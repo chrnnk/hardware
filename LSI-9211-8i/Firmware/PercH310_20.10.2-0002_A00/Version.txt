@@ -1,0 +1,8 @@
+Title: SAS RAID: PERC H310 Adapter,PERC H310 Adapter for Precision Workstations Firmware
+Version: A00-00        WP0000007482
+OEM Name: 
+OEM Version: 20.10.2-0002
+Computers: Precision: T3600, T5600, T7600
+OS: MS-DOS - 6.2x
+Languages: English
+Created: 6/19/2012

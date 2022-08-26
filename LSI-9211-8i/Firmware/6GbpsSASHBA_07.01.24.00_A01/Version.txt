@@ -1,0 +1,8 @@
+Title: SAS Non-RAID: Dell 6Gbps SAS HBA Firmware
+Version    : A01
+OEM name   : Dell
+OEM Version: 07.01.24.00
+Computers  : PowerEdge: 1950, 2900, 2970, R210, R310, R410, R510, R610, R710, R805, R810, R815, R910, T110, T310, T410, T610, T710; PowerVault: DL2100, NX3100
+OSes       : Not Applicable 
+Languages  : English
+Created    : Wednesday, May 19, 2010

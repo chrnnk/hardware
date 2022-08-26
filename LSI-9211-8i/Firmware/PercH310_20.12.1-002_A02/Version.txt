@@ -1,0 +1,8 @@
+Title: SAS RAID: Dell PERC H310 Adapter for Precision Workstations,Dell PERC H310 Adapter Firmware
+Version: A02
+OEM Name: 
+OEM Version: 20.12.1-002
+Computers: Precision: T5600, T3600, T7600
+OS: Red Hat Linux 6.2 - ALL, Windows 7 32-bit - Professional, Windows XP - ALL, Windows XP - Media Center Edition, Ubuntu 11.10, MS-DOS - ALL, Windows XP - Home Edition, BIOS - ALL, Windows XP - Professional 64-bit (IA64), Windows 7 32-bit - Home Premium, LINUX - OS - Desktop 7.04, MS-DOS - 6.2x, Windows 7 64-bit - Home Premium, Windows 7 64-bit - Home Basic, Windows 7 64-bit - Ultimate, Red Hat Linux 6.1 - ALL, Windows 7 64-bit - Professional, Windows XP - Professional, Windows 7 32-bit - Home Basic, BIOS, Windows 7 32-bit - Ultimate, Windows 7 32-bit - Starter
+Languages: English
+Created: 9/11/2013

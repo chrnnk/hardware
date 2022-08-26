@@ -1,0 +1,2 @@
+@ECHO OFF
+xflash 1F1D H200A.FW 07.03.05.00   
