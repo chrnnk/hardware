@@ -1,8 +1,0 @@
-Title: SAS Non-RAID: 6Gbps SAS HBA Firmware
-Version: A09
-OEM Name: 
-OEM Version: 07.03.05.00
-Computers: Enterprise Servers: T320, R610, R410, OEMR XL R520, R510, OEM Ready R820, OEM Ready T420, R620, R210 II, External OEMR R520, PER710, R310, R720xd, OEM Ready R720, External OEMR R320, T620, External OEMR R420, T420; Powervault: DL2300, NX3200, NX3300, DL2100, LTO6, NX400
-OS: Not Applicable
-Languages: Chinese Simplified,Chinese Traditional,English,French,German,Japanese,Korean,Russian,Spanish
-Created: 2/4/2013

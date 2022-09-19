@@ -1,8 +1,0 @@
-Title      : SAS RAID:Dell PERC H200 Adapter Firmware
-Version    : A00
-OEM Name   : Dell
-OEM Ver    : 07.01.11.00 
-Computers  : PowerEdge - T610, R410, T410, T710, T310, R210, T110
-Oses       : Not Applicable , 
-Languages  : English
-Created    : Mon Dec 14 13:13:01 CST 2009

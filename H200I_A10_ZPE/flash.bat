@@ -1,2 +1,0 @@
-@ECHO OFF
-xflash 1F1E H200I.FW 07.03.06.00   

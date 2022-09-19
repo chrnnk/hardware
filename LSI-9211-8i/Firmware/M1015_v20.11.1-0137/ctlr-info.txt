@@ -1,2 +1,0 @@
-040d,ServeRAID M1115 SAS/SATA Controller,m1000fw.rom,No FILE,
-03b1,ServeRAID M1015 SAS/SATA Controller,m1000fw.rom,No FILE,

@@ -1,8 +1,0 @@
-Title: SAS RAID: PERC H310 Adapter Firmware
-Version: A05
-OEM Name: 
-OEM Version: 20.11.0-0002
-Computers: Enterprise Servers: T620
-OS: Not Applicable - ALL, Not Applicable
-Languages: English
-Created: 12/10/2012
