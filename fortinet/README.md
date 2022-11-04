@@ -1,73 +1,18 @@
-YS
-ABOUT
-CHECKPOINT-NGNGX
-CISCO
-FORTIGATE
-FORTINET
-LINUX
-REVERSING
-ARCHIVES
-TAGS
-RSS
-
-
-
-Fortigate CLI Tips to avoid costly mistakes, save time, and make you more effective
-Mon 21 February 2022 in Fortigate
-#Fortigate
-
-Table of Contents
-Benefits of using CLI
-Use get inside any configuration subtree to show currently active settings for this module
-grep - the Secret weapon for searching the configuration and diagnostics
-Navigating the CLI
-Use select, append, unselect to avoid costly mistakes
-Disable screen paging to get rid of --More-- in the output
-alias for commands saves typing time
-Not sure what is the string limitation or what is availabe in any config mode? tree to the rescue
-Save console output to a file
-Run CLI command(s) remotely without interactive login
-Find admin users open to the World
-Send multi-line command - get routing table and wan interface state
-Use edit 0 to add new entries
-Use move to change order of entries
-Use delete to remove an entry
-Use (with caution!) purge to delete the whole table
-Objects with names can be renamed with rename
-Workspace Mode - missing commit for configuration changes? Here it is to prevent concurrent changes, partial configuration and more
-Benefits of using CLI
-Working on Fortigate CLI instead of GUI has lots of advantages, some of them are:
-
-Most of the advance settings in Fortigate are available ONLY in CLI.
-
-The CLI changes very little with new firmware versions, as opposed to GUI where settings/menu get moved around freely. So, once you learn it (CLI), you don’t need to re-learn it with new FortiOS releases.
-
-You can see the context of the configuration by using show, so not to make mistakes.
-
-Full configuration search grep is available only on CLI.
-
-You can jump between different parts of configuration in split seconds, unlike navigating each menu item in GUI.
-
-You can see actual active and complete settings of any Fortigate configuration by using get, which is not possible in GUI.
-
-Diagnostics and debug are done exclusively on CLI.
-
-And now, when you are sold on benefits of using CLI in Fortigate, let me share useful tips on working with CLI I learned over the years.
-
-Use get inside any configuration subtree to show currently active settings for this module
+## Use get inside any configuration subtree to show currently active settings for this module
 Once you enter any configuration subtree by using config command, you can issue get to see settings for this subtree. For example, going to config sys interface, then edit port1 to enter port1 interface subtree, you can run get and see ALL the settings for this port. It will be at least 3 times more than is shown in GUI.
 
-grep - the Secret weapon for searching the configuration and diagnostics
+##  grep - the Secret weapon for searching the configuration and diagnostics
 Fortigate configuration is huge, thousands of lines, no one can remember where every setting is located, nor should. You can search all the configuration with the grep command. For example, say we need to know what HTTPS port was configured for admin access, but we don’t know where it is placed neither how exactly it is named. No problem, just search for admin, like this:
-
+```
 NSE8# show | grep admin
 #config-version=FG100E-5.6.11-FW-build1700-190814:opmode=1:vdom=0:user=admin
     set admin-scp enable
     set admin-sport 4434 <-- HERE IT IS!
     set admintimeout 300
     ...
+```
 But that is not the whole power of grep - now we want to see the exact configuration location to go and change it. You can use -f for that to show the context of the search term. To continue the example above, let’s find the subtree for the HTTPS GUI admin port:
-
+```
 NSE8# show | grep admin-sport -f
 config system global
     set admin-scp enable
@@ -79,42 +24,39 @@ config system global
     set proxy-auth-timeout 1
     set timezone 36
 end
-Now, we can change this GUI management port easily on CLI.
+```
 
-Even more to that, the command show displays only non-default settings, that is, the settings we changed. But grep knows to search even configs not visible neither in GUI, nor in CLI! Just use # show full | grep <config we want to see>.
+Even more to that, the command show displays only non-default settings, that is, the settings we changed. But grep knows to search even configs not visible neither in GUI, nor in CLI! Just use # show full | grep <config we want to see>. And of course, you can use grep with ANY output producing command, like diagnose and get, not only show.
 
-And of course, you can use grep with ANY output producing command, like diagnose and get, not only show.
-
-Navigating the CLI
+## Navigating the CLI
 We have some basic Linux movements available, which makes editing long commands much faster.
-
-Command	Description
+```
 Ctrl + C
-
+```
 When inside config subtree, jump out to non-config mode aborting and losing all configuration commands you typed so far. Use it to abort unsaved changes you haven’t applied via next/end yet.
-
+```
 Ctrl + A
-
+```
 Jump to the beginning of the line.
-
+```
 Ctrl + E
-
+```
 Jump to the end of the line.
-
+```
 Ctrl + F
-
+```
 Move cursor one word forward.
-
+```
 Ctrl + B
-
+```
 Move cursor back one word.
-
+```
 Arrow up/down
-
+```
 Put previous/next command you entered before (command history).
-
+```
 \
-
+```
 Use backslash as the last character on a line to continue the command to the next line without applying it. It is sometimes useful when entering long URL/Regex filters to see the whole command uncut.
 
 Use select, append, unselect to avoid costly mistakes
