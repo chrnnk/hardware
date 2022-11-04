@@ -63,54 +63,53 @@ Use select, append, unselect to avoid costly mistakes
 Using set inside any config subtree replaces any existing values there, which may be not what you meant. Fortigate have other options for us.
 
 To APPEND to the exiting values, leaving them intact, use append instead of set. Let’s see an example. Say we have a firewall address group containing 5 addresses, like this:
-
+```
 config firewall addrgrp
     edit "TEST_GROUP"
         set member "TEST2" "TEST1" "TEST3" "TEST4" "TEST5"
     next
 end
+```
 And we want to add another member TEST7 to this list. If we use set member TEST7 this will put TEST7 as the member but will also remove the other members. To actually add to the list, we use append:
-
+```
 (TEST_GROUP) # append member TEST7
-After which, the address group will look:
-
 config firewall addrgrp
     edit "TEST_GROUP"
         set member "TEST1" "TEST2" "TEST3" "TEST4" "TEST5" "TEST7"
     next
 end
+```
 Next is unselect keyword - it deletes from the list members you give it. For example above, let’s delete just members TEST2 and TEST5:
-
+```
 (TEST_GROUP) # unselect member TEST2 TEST4
-This will have the effect:
-
 config firewall addrgrp
     edit "TEST_GROUP"
         set member "TEST1" "TEST3" "TEST5" "TEST7"
     next
 end
+```
 Next in line is unset - when you want to keep the containing object (say address group), but clear it from all of its members. Example is due, let’s remove all members from the address group (this will NOT delete those objects from Fortigate, just from the address group):
-
+```
 (TEST_GROUP) # unset member
-The address group will now look like:
-
 config firewall addrgrp
     edit "TEST_GROUP"
         set uuid fd3er8e8-8d2a-53ec-93e3-33578fa
     next
 end
-Disable screen paging to get rid of --More-- in the output
+```
+## Disable screen paging to get rid of --More-- in the output
 Output paging is on by default, but if you want to see the full command output, for example when saving console output to a log file, this gets in the way as it peppers each output window with --More--. We can disable this paging:
-
+```
 config system console
         set output standard
 end
-To bring paging back:
-
+```
+```
 config sys console
         set output more
 end
-alias for commands saves typing time
+```
+## alias for commands saves typing time
 Fortigate commands can be and many times are lengthy, how about showing routing table - get router info routing all? Typing such commands over and over again wastes time. The command alias will help us here. Unlike in Cisco world, unfortunately, there are some limitations:
 
 Configured aliases are saved in the configuration and so survive reboots and upgrades.
@@ -126,7 +125,7 @@ Alias can NOT accept arguments. If we have an alias shint for show system interf
 To use alias you specify word alias then name of the alias itself (see below examples).
 
 To configure alias we use config system alias command. Let’s create an alias for displaying routing table.
-
+```
 config system alias
     edit "rt"
         set command "get router info routing all"
@@ -135,10 +134,10 @@ config system alias
         set command "get router info6 routing-table"
     next
 end
+```
 Now, to use the alias:
-
+```
 # alias rt
-
 Routing table for VRF=0
 Codes: K - kernel, C - connected, S - static, R - RIP, B - BGP
        O - OSPF, IA - OSPF inter area
@@ -150,13 +149,13 @@ Codes: K - kernel, C - connected, S - static, R - RIP, B - BGP
 S*      0.0.0.0/0 [10/0] via 192.168.13.1, port1
 C       10.10.17.0/24 is directly connected, port3
 C       192.168.13.0/24 is directly connected, port1
+```
 Not sure what is the string limitation or what is availabe in any config mode? tree to the rescue
 Every user-defined setting you enter has some limitation, be it on its numerical value range, or string/name length. It disappoints to carefully type a long and descriptive name for a new address or url filter just to get it discarded with the error "The string is too long".
 
 To see limitations of all the settings in the current config subtree, just run tree inside the config mode:
-
+```
 # config sys int
-
 (interface) # tree
 -- [interface] --*name  (16) <-- Interface name can be up to 16 characters long
                              <-- * means this is a required setting.
@@ -166,61 +165,55 @@ To see limitations of all the settings in the current config subtree, just run t
                |- mode
                |- distance      (1,255)
                |- priority      (0,4294967295)
-Save console output to a file
+```
+## Save console output to a file
 CLI browser applet in the Fortigate has option to save the output (after it was dsiplayed) to a file. Find this in the upper right corner of the GUI. For those cases when you don’t have luxury of fully fledged SSH client.
 
-Download log of console output
+## Download log of console output
 On any standalone SSH client though, there is always an option to enable logging of the session output to a text file, so use it accordingly, probably disabling the paging as per above.
 
-Run CLI command(s) remotely without interactive login
+## Run CLI command(s) remotely without interactive login
 When you need to run a command (or series of commands) and be off, you can save time by running Fortigate CLI command(s) via ssh tunnel without interactively logging in to the firewall. This is a feature of SSH protocol, not specific to Fortigate. Additionally, by piping the output of CLI command to the local shell we can do powerful post-processing which is not possible on the Fortigate CLI.
 
-Find admin users open to the World
+## Find admin users open to the World
 For example, let’s find all the admin local users of the Fortigate where their access is NOT limited by IP address, that is, which are allowed to login from ANY. Bad practice.
 
 When an admin user is set with trusthost equal to 0.0.0.0, it means such user can connect from anywhere, also, in CLI such user has no trusthost in the output of show command. So, we have to search for the lack of set trusthost command in the output of show sys admin. Let’s do so with the Awk:
-
+```
 yurisk@Yuri-Mac-mini% echo -e " show sys admin " |
 ssh admin@192.168.13.177 | awk 'BEGIN {RS = "edit"} $0 !~ /trusthost/'    (1)
-
 Pseudo-terminal will not be allocated because stdin is not a terminal.
 Enter passphrase for key '/Users/yurisk/.ssh/id_rsa':
 NSE8-lab-FGT200F # config system admin
-
  "bad_user"     (2)
         set accprofile "super_admin"
         set vdom "root"
         set password ENC SH2JxMvVDR87AhtyTiChIbkk+fEJAWjDtpGA=
     next
 end
+```
 This is run on the local host - show sys admin is sent to Fortigate, then output is parsed by Awk to look for users without trusthost set.
 
 This is the user open to the World.
 
-Send multi-line command - get routing table and wan interface state
+## Send multi-line command - get routing table and wan interface state
 We can send multi-line commands to the Fortigate as well. Let’s send in one go 2 commands: get router info routing all and get sys interface | grep wan1:
-
+```
 yurisk@Yuris-Mac-mini%  ssh admin@192.168.13.177 '
-
 get router info routing all
-
 get sys int| grep wan1'
-
 Pseudo-terminal will not be allocated because stdin is not a terminal.
 Enter passphrase for key '/Users/yurisk/.ssh/id_rsa':
-
 NSE8-lab-FGT200F # Codes: K - kernel, C - connected, S - static, R - RIP, B - BGP
        O - OSPF, IA - OSPF inter area
        N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
        E1 - OSPF external type 1, E2 - OSPF external type 2
        i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
        * - candidate default
-
 S*      0.0.0.0/0 [10/0] via 192.168.13.176, wan1
 C       10.0.0.0/24 is directly connected, WiFi
 C       192.168.10.0/24 is directly connected, LAN_SF_SWITCH
 C       192.168.13.177/31 is directly connected, wan1
-
 
 NSE8-lab-FGT200F # == [ wan1 ]
 name: wan1   mode: static    ip: 192.168.13.177 255.255.255.254   status: up
@@ -228,6 +221,7 @@ netbios-forward: disable    type: physical   netflow-sampler: disable
 sflow-sampler: disable    scan-botnet-connections: disable    src-check: enable
 mtu-override: disable    wccp: disable    drop-overlapped-fragment: disable
 drop-fragment: disable
+```
 Use edit 0 to add new entries
 When creating a new entry in config submode, many times you have to specify this entry running number. If you give the existing entry number, you will not add, but edit this existing entry. You have to provide unused entry number to create a new entry. These running numbers are for Fortigate reference only, they do not signify order of the entries. So not to come up with big unused number, use edit 0 and this will create a new entry with the next available running number.
 
