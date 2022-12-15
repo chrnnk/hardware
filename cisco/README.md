@@ -1,8 +1,14 @@
+Port-channel LAG groups
 ```bash
 show interfaces Port-Channel1
 ```
 ```bash
 show lacp Port-Channel1
+```
+Show port stats
+```bash
+show ip interface brief
+show interfaces status
 ```
 ```bash
 show interfaces counters
