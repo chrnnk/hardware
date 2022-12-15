@@ -8,6 +8,8 @@ show lacp Port-Channel1
 Show port stats
 ```bash
 show ip interface brief
+```
+```
 show interfaces status
 ```
 ```bash
