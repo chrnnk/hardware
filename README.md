@@ -1,1 +1,1 @@
-Scripts and commands for networking devices, mostly
+Scripts and commands for networking devices or server hardware, mostly
