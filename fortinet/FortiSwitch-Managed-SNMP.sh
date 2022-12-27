@@ -1,4 +1,5 @@
 # https://community.fortinet.com/t5/FortiGate/Troubleshooting-Tip-Configure-SNMP-for-Managed-FortiSwitch-using/ta-p/196381
+# https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/d25d773a-37d0-11ea-9384-00505692583a/FortiSwitch-6.2.3-Managed_by_FortiOS_6.2.pdf
 config switch-controller security-policy local-access
 show
 edit default
