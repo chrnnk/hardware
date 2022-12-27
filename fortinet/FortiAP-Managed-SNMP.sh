@@ -14,7 +14,7 @@ config wireless-controller snmp
         next
     end
     config user
-        edit "SBTsnmp"
+        edit "SNMPname"
             set trap-status enable
         next
     end
