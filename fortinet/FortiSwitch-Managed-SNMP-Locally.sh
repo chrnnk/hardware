@@ -14,7 +14,7 @@ set command "config system interface %0a edit internal %0a set allowaccess http 
 next
 
 edit snmp2
-set command "config system snmp community %0a edit 2 %0a config hosts %0a edit 1 %0a set interface internal %0a set ip 192.168.1.10 255.255.255.255 %0a next %0a end %0a set name SNMPCOMMUNITY %0a next %0a end %0a"
+set command "config system snmp community %0a edit 2 %0a config hosts %0a edit 1 %0a set interface internal %0a set ip IPADDRESS 255.255.255.255 %0a next %0a end %0a set name SNMPCOMMUNITY %0a next %0a end %0a"
 next
 
 edit snmp3

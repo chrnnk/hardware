@@ -1,10 +1,4 @@
 # https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/d25d773a-37d0-11ea-9384-00505692583a/FortiSwitch-6.2.3-Managed_by_FortiOS_6.2.pdf
-# Configuring SNMP globally
-# To configure SNMP globally, configure the following settings:
-# 1. Configure the SNMP system information.
-# 2. Configure the SNMP community.
-# 3. Configure the SNMP trap threshold values.
-# 4. Configure the SNMP user.
 # 
 # To configure the SNMP system information globally:
 config switch-controller snmp-sysinfo
@@ -14,6 +8,7 @@ set description <system_description>
 set contact-info <contact_information>
 set location <FortiGate_location>
 end
+#
 # To configure the SNMP community globally:
 config switch-controller snmp-community
 edit <SNMP_community_ID>
@@ -34,12 +29,14 @@ edit <host_entry_ID>
 set ip <IPv4_address_of_the_SNMP_manager>
 end
 end
+#
 # To configure the SNMP trap threshold values globally:
 config switch-controller snmp-trap-threshold
 set trap-high-cpu-threshold <percentage_value; the default is 80>
 set trap-low-memory-threshold <percentage_value; the default is 80>
 set trap-log-full-threshold <percentage_value; the default is 90>
 end
+#
 # To configure the SNMP user globally:
 config switch-controller snmp-user
 edit <SNMP_user_name>
