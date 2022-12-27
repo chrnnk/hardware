@@ -5,7 +5,7 @@ config wireless-controller snmp
     set trap-high-mem-threshold 80
     config community
         edit 1
-            set name "SNMP"
+            set name "SNMPname"
             config hosts
                 edit 1
                     set ip SNMP-COLLECTOR-IP 255.255.255.255
