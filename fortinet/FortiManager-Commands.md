@@ -6,3 +6,15 @@ reset adom in fortimanager
 ```
 exe reset adom-settings <adom-number> <major-version> <minor-version>
 ```
+more1
+```
+
+```
+more2
+```
+
+```
+more3
+```
+
+```
