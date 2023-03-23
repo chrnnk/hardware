@@ -1,0 +1,4 @@
+repair task database while preserving data where possible
+```
+di dvm task repair
+```
