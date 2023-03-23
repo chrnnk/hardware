@@ -6,9 +6,10 @@ reset adom in fortimanager
 ```
 exe reset adom-settings <adom-number> <major-version> <minor-version>
 ```
-more1
+check integrity
 ```
-
+di dvm check-integrity
+di cdb check adom-integrity
 ```
 more2
 ```
