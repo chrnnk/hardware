@@ -4,6 +4,7 @@ Run as a service on Windows
 cd "%UserProfile%\Ubiquiti UniFi\"
 java -jar lib\ace.jar installsvc
 java -jar lib\ace.jar startsvc
+java -jar lib\ace.jar uninstallsvc
 ```
 SSH adopt
 ```
