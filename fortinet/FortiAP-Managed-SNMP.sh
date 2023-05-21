@@ -1,6 +1,6 @@
 config wireless-controller snmp
     set engine-id "fap-fortinet"
-    set contact-info "support@sbtpartners.com"
+    set contact-info "support@email.com"
     set trap-high-cpu-threshold 80
     set trap-high-mem-threshold 80
     config community
