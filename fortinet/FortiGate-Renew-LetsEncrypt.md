@@ -15,7 +15,7 @@ get vpn certificate local details <Local certificate name>
 diagnose sys acme status-full <Certificate’s CN domain>
 ```
 Sample output when ACME certificate is renewed:
-``
+```
 get vpn certificate local details acme-cert
 diagnose sys acme status-full test.ftntlab.de
 ```
