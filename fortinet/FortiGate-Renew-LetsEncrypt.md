@@ -18,3 +18,4 @@ Sample output when ACME certificate is renewed:
 ``
 get vpn certificate local details acme-cert
 diagnose sys acme status-full test.ftntlab.de
+```
