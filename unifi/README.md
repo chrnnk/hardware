@@ -10,3 +10,7 @@ SSH adopt
 ```
 set-inform http://192.168.1.10:8080/inform
 ```
+SSH factory reset
+```
+syswrapper.sh restore-default & set-default &
+```
